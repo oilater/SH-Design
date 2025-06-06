@@ -57,16 +57,10 @@ export const Button: React.FC<ButtonProps> = ({
       style={style}
       {...props}
     >
-      {loading ? (
-        <div>
-          <span className="button__loader" aria-hidden="true" />
-          <span className="button__content" aria-hidden="true">
-            {children}
-          </span>
-        </div>
-      ) : (
-        children
-      )}
+      <div>
+        {loading && <span className="button__loader" aria-hidden="true" />}
+        <span className={loading ? 'button__content' : undefined}>{children}</span>
+      </div>
     </button>
   );
 }; 

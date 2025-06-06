@@ -126,11 +126,6 @@ $button-shadow-active-light: 0 2px 4px rgba(22, 119, 255, 0.1);
     outline-offset: 2px;
   }
 
-  // Keyboard focus styles
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-
   // Loading state
   &--loading {
     position: relative;
