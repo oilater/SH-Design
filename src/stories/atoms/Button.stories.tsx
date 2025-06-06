@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '../../atoms/Button/Button';
+import Button from '../../atoms/Button/Button';
 
 const meta = {
   title: 'Atoms/Button',
@@ -11,13 +11,13 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline'],
+      options: ['primary', 'secondary'],
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
     },
-    loading: {
+    isLoading: {
       control: 'boolean',
     },
     disabled: {
@@ -39,13 +39,6 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    children: 'Button',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
     children: 'Button',
   },
 };
@@ -73,7 +66,7 @@ export const Large: Story = {
 
 export const Loading: Story = {
   args: {
-    loading: true,
+    isLoading: true,
     children: 'Loading',
   },
 };

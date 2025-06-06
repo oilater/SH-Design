@@ -1,158 +1,135 @@
-@import '../../styles/tokens/colors.scss';
-@import '../../styles/tokens/spacing.scss';
-@import '../../styles/tokens/radius.scss';
-@import '../../styles/typography/typography.scss';
-
-// Design Tokens
-$button-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-$button-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-$button-shadow-active: 0 2px 4px rgba(22, 119, 255, 0.2);
-$button-shadow-active-light: 0 2px 4px rgba(22, 119, 255, 0.1);
-
-// Base Button
 .button {
   // Layout
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
-  height: 42px;
-  padding: $spacing-2 $spacing-6;
+  position: relative;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  user-select: none;
+  min-width: 32px;
+  gap: 8px;
 
   // Typography
-  font-family: $font-family-sans;
-  font-weight: $font-weight-normal;
-  @include text-base;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: 1.5715;
 
   // Visual
   border: 1px solid transparent;
-  border-radius: $radius-xl;
-  background-color: $color-background-primary;
-  color: $color-text-primary;
-  border-color: $color-border-base;
-  box-shadow: $button-shadow;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-base);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  outline: 0;
 
   // Interactive
   cursor: pointer;
-  transition: $button-transition;
-  text-decoration: none;
-  outline: none;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
 
   // Variants
   &--primary {
-    background-color: $color-primary-500;
-    color: $color-text-inverse;
-    border: none;
-    box-shadow: none;
+    background-color: var(--color-primary-500);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary-500);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 
     &:hover:not(:disabled) {
-      background-color: $color-primary-400;
+      background-color: var(--color-primary-400);
+      border-color: var(--color-primary-400);
     }
 
     &:active:not(:disabled) {
-      background-color: $color-primary-600;
-      box-shadow: $button-shadow-active;
+      background-color: var(--color-primary-600);
+      border-color: var(--color-primary-600);
     }
   }
 
   &--secondary {
-    background-color: $color-primary-50;
-    color: $color-primary-500;
-    border: 1px solid $color-primary-100;
-    box-shadow: none;
+    background-color: var(--color-neutral-50);
+    color: var(--color-text-primary);
+    border-color: var(--color-neutral-200);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
 
     &:hover:not(:disabled) {
-      background-color: $color-primary-100;
-      border-color: $color-primary-200;
+      color: var(--color-primary-500);
+      border-color: var(--color-primary-500);
+      background-color: var(--color-neutral-50);
     }
 
     &:active:not(:disabled) {
-      background-color: $color-primary-200;
-      box-shadow: $button-shadow-active-light;
-    }
-  }
-
-  &--outline {
-    background-color: transparent;
-    border: 1px solid $color-primary-200;
-    color: $color-primary-500;
-    box-shadow: none;
-
-    &:hover:not(:disabled) {
-      background-color: $color-primary-50;
-      border-color: $color-primary-300;
-    }
-
-    &:active:not(:disabled) {
-      background-color: $color-primary-100;
-      box-shadow: $button-shadow-active-light;
+      color: var(--color-primary-600);
+      border-color: var(--color-primary-600);
+      background-color: var(--color-neutral-50);
     }
   }
 
   // Sizes
   &--small {
-    @include text-sm;
-    height: 32px;
-    padding: $spacing-1 $spacing-5;
-    border-radius: $radius-lg;
+    height: 24px;
+    padding: 0 8px;
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-sm);
+    min-width: 24px;
+
+    .button__spinner {
+      width: 12px;
+      height: 12px;
+    }
   }
 
   &--medium {
-    @include text-base;
-    height: 42px;
-    padding: $spacing-2 $spacing-6;
-    border-radius: $radius-xl;
+    height: 32px;
+    padding: 0 16px;
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-base);
+    min-width: 32px;
+
+    .button__spinner {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &--large {
-    @include text-lg;
-    height: 52px;
-    padding: $spacing-3 $spacing-6;
-    border-radius: $radius-2xl;
-  }
+    height: 40px;
+    padding: 0 20px;
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-base);
+    min-width: 40px;
 
-  // States
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    box-shadow: none;
-  }
-
-  // Focus styles
-  &:focus-visible {
-    outline: 2px solid $color-primary-500;
-    outline-offset: 2px;
+    .button__spinner {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // Loading state
-  &--loading {
-    position: relative;
-    color: transparent !important;
-    pointer-events: none;
-
-    .button__loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: $radius-full;
-      border-top-color: $color-text-inverse;
-      animation: spin 0.8s linear infinite;
-    }
-
-    .button__content {
-      visibility: hidden;
-    }
+  &__spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: button-spin 0.75s linear infinite;
+    flex-shrink: 0;
   }
 }
 
-@keyframes spin {
+@keyframes button-spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 } 
